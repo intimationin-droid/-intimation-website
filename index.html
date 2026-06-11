@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intimation.in — Legal Document Delivery Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A1628;
+    --navy-light: #112240;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --cream: #F8F6F1;
+    --white: #FFFFFF;
+    --gray-100: #F1F0EC;
+    --gray-200: #E2E0D9;
+    --gray-400: #9B9890;
+    --gray-600: #5C5A54;
+    --gray-800: #2A2926;
+    --accent: #1A4A8C;
+    --accent-light: #2563EB;
+    --success: #0F6E56;
+    --text-primary: #0A1628;
+    --text-secondary: #4A4840;
+    --text-muted: #7A7870;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10, 22, 40, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    padding: 0 2rem;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--navy);
+    letter-spacing: -1px;
+  }
+
+  .nav-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.3px;
+  }
+
+  .nav-logo-text span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 2rem 80px;
+  }
+
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-tagline {
+    font-size: 18px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+    line-height: 1.7;
+    font-style: italic;
+    border-left: 3px solid var(--gold);
+    padding-left: 16px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hero-stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* HERO CARD */
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+  }
+
+  .hero-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hero-card-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(201,168,76,0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .hero-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .hero-card-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .hero-card-status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #4ade80;
+    font-weight: 500;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+  }
+
+  .hero-card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 13px;
+  }
+
+  .hero-card-row:last-child { border-bottom: none; }
+
+  .hero-card-row-label { color: rgba(255,255,255,0.4); }
+  .hero-card-row-val { color: var(--white); font-weight: 500; }
+  .hero-card-row-val.gold { color: var(--gold); }
+
+  .hero-card-action {
+    margin-top: 24px;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .hero-card-action:hover { background: var(--gold-light); }
+
+  /* SECTION BASE */
+  section { padding: 100px 2rem; }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+
+  .section-title.white { color: var(--white); }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .section-sub.light { color: rgba(255,255,255,0.6); }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--cream);
+    padding: 28px 2rem;
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .trust-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-600);
+  }
+
+  .trust-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+
+  /* HOW IT WORKS */
+  .how-it-works { background: var(--cream); }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    margin-top: 60px;
+    background: var(--gray-200);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .step-card {
+    background: var(--white);
+    padding: 40px 32px;
+    position: relative;
+  }
+
+  .step-num {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--gray-100);
+    line-height: 1;
+    margin-bottom: 24px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .step-icon-wrap {
+    width: 52px;
+    height: 52px;
+    background: var(--navy);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .step-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .step-tag {
+    display: inline-block;
+    margin-top: 16px;
+    background: rgba(201,168,76,0.1);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+
+  /* SERVICES */
+  .services { background: var(--white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .service-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 36px;
+    position: relative;
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .service-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(10,22,40,0.08);
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-card.featured {
+    background: var(--navy);
+    border-color: rgba(201,168,76,0.3);
+  }
+
+  .service-card.featured::before { transform: scaleX(1); }
+
+  .service-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.1);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+
+  .service-card.featured .service-badge {
+    background: rgba(201,168,76,0.2);
+  }
+
+  .service-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .service-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .service-card.featured .service-name { color: var(--white); }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .service-card.featured .service-desc { color: rgba(255,255,255,0.5); }
+
+  .service-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 24px;
+  }
+
+  .service-price-num {
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .service-card.featured .service-price-num { color: var(--gold); }
+
+  .service-price-label {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .service-features {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+
+  .service-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    padding: 6px 0;
+  }
+
+  .service-card.featured .service-features li { color: rgba(255,255,255,0.7); }
+
+  .check {
+    width: 18px;
+    height: 18px;
+    background: rgba(15,110,86,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+    color: var(--success);
+  }
+
+  .service-card.featured .check {
+    background: rgba(201,168,76,0.15);
+    color: var(--gold);
+  }
+
+  .service-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    border: none;
+  }
+
+  .service-btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--gray-200);
+    color: var(--text-primary);
+  }
+
+  .service-btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .service-btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  .service-btn-gold:hover { background: var(--gold-light); }
+
+  /* TRACK ORDER */
+  .track-section {
+    background: var(--navy);
+    padding: 100px 2rem;
+  }
+
+  .track-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .track-form {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px;
+    padding: 8px;
+  }
+
+  .track-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-size: 15px;
+    padding: 10px 16px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .track-input::placeholder { color: rgba(255,255,255,0.3); }
+
+  .track-btn {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .track-btn:hover { background: var(--gold-light); }
+
+  .track-result {
+    margin-top: 24px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px;
+    padding: 24px;
+    display: none;
+    text-align: left;
+  }
+
+  .track-result.visible { display: block; }
+
+  .track-result-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .track-status-badge {
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .status-completed {
+    background: rgba(15,110,86,0.2);
+    color: #4ade80;
+  }
+
+  .status-processing {
+    background: rgba(201,168,76,0.15);
+    color: var(--gold);
+  }
+
+  /* FUTURE SERVICES */
+  .future-section { background: var(--cream); }
+
+  .future-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .future-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .future-card-coming {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .future-card.active .future-card-coming {
+    background: rgba(15,110,86,0.1);
+    color: var(--success);
+  }
+
+  .future-card-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+
+  .future-card-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* WHY US */
+  .why-section { background: var(--white); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin-top: 60px;
+  }
+
+  .why-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .why-icon-wrap {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    background: var(--navy);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .why-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .why-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* FAQ */
+  .faq-section { background: var(--cream); }
+
+  .faq-list {
+    margin-top: 48px;
+    max-width: 800px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--gray-200);
+    padding: 24px 0;
+    cursor: pointer;
+  }
+
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    gap: 16px;
+  }
+
+  .faq-toggle {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    background: var(--navy);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--gold);
+    transition: transform 0.2s;
+  }
+
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+  .faq-a {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 200px;
+    padding-top: 16px;
+  }
+
+  /* CONTACT */
+  .contact-section { background: var(--navy); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+
+  .contact-info-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    background: rgba(201,168,76,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .contact-info-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .contact-info-val {
+    font-size: 15px;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+  .form-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus { border-color: rgba(201,168,76,0.5); }
+  .form-input::placeholder { color: rgba(255,255,255,0.2); }
+
+  textarea.form-input { resize: vertical; min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    background: #060E1A;
+    padding: 60px 2rem 32px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+    margin-top: 16px;
+    max-width: 280px;
+  }
+
+  .footer-col-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  .footer-links { list-style: none; }
+
+  .footer-links li { margin-bottom: 10px; }
+
+  .footer-links a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero-content { grid-template-columns: 1fr; gap: 40px; }
+    .hero-card { display: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    nav .nav-links { display: none; }
+    .hero-stats { flex-wrap: wrap; gap: 20px; }
+    .track-form { flex-direction: column; }
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">IN</div>
+    <div class="nav-logo-text">Intimation<span>.in</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#track">Track Order</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#services" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content container">
+    <div>
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        India's Legal Delivery Platform
+      </div>
+      <h1>Don't struggle<br>when you have a<br><em>Legal Buddy</em></h1>
+      <p class="hero-tagline">Send legally valid intimations via India Post ePost — instantly, reliably, and with full audit trail.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Send Intimation →</a>
+        <a href="#track" class="btn-outline">Track Order</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">17+</div>
+          <div class="hero-stat-label">Banks Supported</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">₹60</div>
+          <div class="hero-stat-label">Starting Price</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">24h</div>
+          <div class="hero-stat-label">Delivery Time</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Legal Validity</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-card-header">
+        <div class="hero-card-icon">📋</div>
+        <div>
+          <div class="hero-card-title">Pre-Repo Intimation</div>
+          <div class="hero-card-sub">Vehicle: MH02AB1234</div>
+        </div>
+        <div class="hero-card-status">
+          <div class="status-dot"></div>
+          Completed
+        </div>
+      </div>
+      <div class="hero-card-row">
+        <span class="hero-card-row-label">Bank</span>
+        <span class="hero-card-row-val">HDFC Bank</span>
+      </div>
+      <div class="hero-card-row">
+        <span class="hero-card-row-label">Borrower</span>
+        <span class="hero-card-row-val">Rajesh Kumar</span>
+      </div>
+      <div class="hero-card-row">
+        <span class="hero-card-row-label">Police Station</span>
+        <span class="hero-card-row-val">Andheri PS, Mumbai</span>
+      </div>
+      <div class="hero-card-row">
+        <span class="hero-card-row-label">ePost Message ID</span>
+        <span class="hero-card-row-val gold">136088-1868782-1</span>
+      </div>
+      <div class="hero-card-row">
+        <span class="hero-card-row-label">Sent On</span>
+        <span class="hero-card-row-val">11 Jun 2026, 2:47 PM</span>
+      </div>
+      <button class="hero-card-action">⬇ Download Intimation PDF</button>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <div class="trust-icon">🏛️</div>
+      India Post ePost Certified
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔒</div>
+      Legally Valid Documents
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⚡</div>
+      Automated Processing
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📋</div>
+      Full Audit Trail
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🏦</div>
+      17+ Banks Supported
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-eyebrow">Process</div>
+    <h2 class="section-title">How it works</h2>
+    <p class="section-sub">From submission to delivery in 4 simple steps. No technical knowledge required.</p>
+
+    <div class="steps-grid fade-up">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon-wrap">📤</div>
+        <div class="step-title">Submit Details</div>
+        <p class="step-desc">Fill the form or upload your bank document. Paste WhatsApp data or upload a PDF — we extract everything automatically.</p>
+        <span class="step-tag">AI Powered</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon-wrap">💳</div>
+        <div class="step-title">Make Payment</div>
+        <p class="step-desc">Pay securely via UPI. PRE or POST at ₹60 each. Both together at ₹110. Instant confirmation.</p>
+        <span class="step-tag">Instant</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon-wrap">🤖</div>
+        <div class="step-title">Auto Processing</div>
+        <p class="step-desc">Our system sends the intimation via India Post ePost automatically. No human delay. Captures Message ID instantly.</p>
+        <span class="step-tag">Automated</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-icon-wrap">📄</div>
+        <div class="step-title">Download PDF</div>
+        <p class="step-desc">Get your completed intimation PDF with ePost Message ID, date, and time. Legally valid and court-ready.</p>
+        <span class="step-tag">Instant Download</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES / PRICING -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-eyebrow">Pricing</div>
+    <h2 class="section-title">Simple, transparent pricing</h2>
+    <p class="section-sub">No hidden charges. Pay per intimation. No subscription required.</p>
+
+    <div class="services-grid fade-up">
+      <div class="service-card">
+        <span class="service-badge">Pre Intimation</span>
+        <span class="service-icon">📋</span>
+        <div class="service-name">PRE Only</div>
+        <p class="service-desc">Send pre-repossession intimation to the concerned police station before taking vehicle custody.</p>
+        <div class="service-price">
+          <span class="service-price-num">₹60</span>
+          <span class="service-price-label">per intimation</span>
+        </div>
+        <ul class="service-features">
+          <li><span class="check">✓</span> ePost via India Post</li>
+          <li><span class="check">✓</span> Message ID captured</li>
+          <li><span class="check">✓</span> PDF with timestamp</li>
+          <li><span class="check">✓</span> All 17 banks supported</li>
+        </ul>
+        <a href="#" class="service-btn service-btn-outline">Send PRE Intimation</a>
+      </div>
+
+      <div class="service-card featured">
+        <span class="service-badge">Most Popular</span>
+        <span class="service-icon">⚡</span>
+        <div class="service-name">PRE + POST</div>
+        <p class="service-desc">Complete repossession documentation. Send both pre and post intimations with separate Message IDs.</p>
+        <div class="service-price">
+          <span class="service-price-num">₹110</span>
+          <span class="service-price-label">both together</span>
+        </div>
+        <ul class="service-features">
+          <li><span class="check">✓</span> PRE + POST ePost</li>
+          <li><span class="check">✓</span> 2 Message IDs captured</li>
+          <li><span class="check">✓</span> 2 separate PDFs</li>
+          <li><span class="check">✓</span> Save ₹10 vs separate</li>
+        </ul>
+        <a href="#" class="service-btn service-btn-gold">Send Both Intimations</a>
+      </div>
+
+      <div class="service-card">
+        <span class="service-badge">Post Intimation</span>
+        <span class="service-icon">📬</span>
+        <div class="service-name">POST Only</div>
+        <p class="service-desc">Send post-repossession intimation to inform the police station after vehicle has been taken into custody.</p>
+        <div class="service-price">
+          <span class="service-price-num">₹60</span>
+          <span class="service-price-label">per intimation</span>
+        </div>
+        <ul class="service-features">
+          <li><span class="check">✓</span> ePost via India Post</li>
+          <li><span class="check">✓</span> Message ID captured</li>
+          <li><span class="check">✓</span> PDF with timestamp</li>
+          <li><span class="check">✓</span> All 17 banks supported</li>
+        </ul>
+        <a href="#" class="service-btn service-btn-outline">Send POST Intimation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK ORDER -->
+<section class="track-section" id="track">
+  <div class="container">
+    <div class="track-inner">
+      <div class="section-eyebrow">Track</div>
+      <h2 class="section-title white">Track your order</h2>
+      <p class="section-sub light">Enter your Vehicle Registration Number or Loan Number to check status and download your intimation PDF.</p>
+
+      <div class="track-form">
+        <input type="text" class="track-input" id="trackInput" placeholder="Enter Vehicle No. (e.g. MH02AB1234) or Loan No." />
+        <button class="track-btn" onclick="trackOrder()">Track →</button>
+      </div>
+
+      <div class="track-result" id="trackResult">
+        <div class="track-result-status">
+          <span style="font-size:14px; color:rgba(255,255,255,0.5);">Status:</span>
+          <span class="track-status-badge status-completed" id="trackStatus">Completed</span>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px;">
+          <div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Vehicle No</div>
+            <div style="font-size:14px;color:#fff;font-weight:500;" id="trackVehicle">—</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Bank</div>
+            <div style="font-size:14px;color:#fff;font-weight:500;" id="trackBank">—</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Type</div>
+            <div style="font-size:14px;color:#fff;font-weight:500;" id="trackType">—</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Message ID</div>
+            <div style="font-size:14px;color:var(--gold);font-weight:600;" id="trackMsgId">—</div>
+          </div>
+        </div>
+        <button class="track-btn" style="width:100%;padding:13px;">⬇ Download Intimation PDF</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE SERVICES -->
+<section class="future-section" id="future">
+  <div class="container">
+    <div class="section-eyebrow">Platform</div>
+    <h2 class="section-title">One platform for all legal documents</h2>
+    <p class="section-sub">Pre/Post intimation is just the beginning. We're building India's most complete legal document delivery platform.</p>
+
+    <div class="future-grid fade-up">
+      <div class="future-card active">
+        <span class="future-card-coming">Live Now</span>
+        <span class="future-card-icon">🚗</span>
+        <div class="future-card-name">Repo Intimation</div>
+      </div>
+      <div class="future-card">
+        <span class="future-card-coming">Coming Soon</span>
+        <span class="future-card-icon">⚖️</span>
+        <div class="future-card-name">Legal Notices</div>
+      </div>
+      <div class="future-card">
+        <span class="future-card-coming">Coming Soon</span>
+        <span class="future-card-icon">🏛️</span>
+        <div class="future-card-name">Court Summons</div>
+      </div>
+      <div class="future-card">
+        <span class="future-card-coming">Coming Soon</span>
+        <span class="future-card-icon">💰</span>
+        <div class="future-card-name">Demand Letters</div>
+      </div>
+      <div class="future-card">
+        <span class="future-card-coming">Coming Soon</span>
+        <span class="future-card-icon">🏠</span>
+        <div class="future-card-name">Eviction Notices</div>
+      </div>
+      <div class="future-card">
+        <span class="future-card-coming">Coming Soon</span>
+        <span class="future-card-icon">💳</span>
+        <div class="future-card-name">Cheque Bounce</div>
+      </div>
+      <div class="future-card">
+        <span class="future-card-coming">Coming Soon</span>
+        <span class="future-card-icon">🏢</span>
+        <div class="future-card-name">Property Notices</div>
+      </div>
+      <div class="future-card">
+        <span class="future-card-coming">Coming Soon</span>
+        <span class="future-card-icon">📜</span>
+        <div class="future-card-name">Employment Notices</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="container">
+    <div class="section-eyebrow">Why Intimation.in</div>
+    <h2 class="section-title">Built for recovery agencies</h2>
+
+    <div class="why-grid fade-up">
+      <div class="why-item">
+        <div class="why-icon-wrap">⚡</div>
+        <div>
+          <div class="why-title">Fully Automated</div>
+          <p class="why-desc">No manual typing. Submit once, our system handles everything — from filling the ePost form to capturing the Message ID.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon-wrap">🤖</div>
+        <div>
+          <div class="why-title">AI Data Extraction</div>
+          <p class="why-desc">Upload a PDF, paste WhatsApp text, or upload a screenshot. Claude AI extracts all relevant fields automatically.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon-wrap">📋</div>
+        <div>
+          <div class="why-title">Legally Valid</div>
+          <p class="why-desc">All intimations sent via India Post ePost — the only legally recognized digital postal service in India.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon-wrap">🏦</div>
+        <div>
+          <div class="why-title">17+ Banks Ready</div>
+          <p class="why-desc">HDFC, CHOLA, Bajaj, TVS Credit, Tata, HDB, Mahindra and many more — all bank formats pre-configured.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon-wrap">🔒</div>
+        <div>
+          <div class="why-title">Duplicate Protection</div>
+          <p class="why-desc">Smart locking system ensures the same vehicle never gets processed twice. Zero double-billing.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon-wrap">📱</div>
+        <div>
+          <div class="why-title">Works Everywhere</div>
+          <p class="why-desc">Mobile friendly. Works on low network. Track your orders anytime from any device.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Common questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          What is an ePost intimation and is it legally valid?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">ePost is India Post's digital messaging service that delivers messages as printed letters to any address in India. It is legally recognized and admissible as proof of communication in courts of law.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          How long does processing take?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Most orders are processed within 5-15 minutes after payment confirmation. You can track your order status on this website using your vehicle number or loan number.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          Which banks are supported?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">We support 17+ banks including HDFC, CHOLA, Bajaj Finance, HDB, Mahindra Finance, TVS Credit, Tata, SK Finance, Manapuram, IndusInd Bank, IndoStar, IKF, Hinduja, Hero Fincorp, HDB Finance, and AU Small Finance Bank.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          What if my order fails?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">In case of any processing failure, our team will manually review and process your order. You will be notified immediately via the contact number provided in the form.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          Can I submit data via WhatsApp message or photo?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Yes. You can upload a PDF document, paste raw WhatsApp text, or upload a screenshot of your bank app. Our AI system extracts all required fields automatically.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-eyebrow" style="color:var(--gold)">Contact</div>
+    <h2 class="section-title white">Get in touch</h2>
+
+    <div class="contact-grid">
+      <div>
+        <p style="font-size:17px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:40px;">Have questions about our services? Need help with a specific bank format? We're here to help.</p>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-val">admin@intimation.in</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">💬</div>
+          <div>
+            <div class="contact-info-label">WhatsApp</div>
+            <div class="contact-info-val">Available on request</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div class="contact-info-label">Website</div>
+            <div class="contact-info-val">intimation.in</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="Agency / Full name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mobile Number</label>
+          <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-input" placeholder="Describe your query..."></textarea>
+        </div>
+        <button class="btn-primary" style="justify-content:center;">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="nav-logo" style="margin-bottom:0">
+          <div class="nav-logo-mark">IN</div>
+          <div class="nav-logo-text">Intimation<span>.in</span></div>
+        </div>
+        <p class="footer-brand-desc">India's legal document delivery platform. Don't struggle when you have a legal buddy.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">PRE Intimation</a></li>
+          <li><a href="#">POST Intimation</a></li>
+          <li><a href="#">PRE + POST</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Banks</div>
+        <ul class="footer-links">
+          <li><a href="#">HDFC Bank</a></li>
+          <li><a href="#">CHOLA Finance</a></li>
+          <li><a href="#">Bajaj Finance</a></li>
+          <li><a href="#">View All 17+</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Intimation.in. All rights reserved.</span>
+      <span>Powered by India Post ePost</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function trackOrder() {
+    var val = document.getElementById('trackInput').value.trim();
+    if (!val) return;
+    var result = document.getElementById('trackResult');
+    document.getElementById('trackVehicle').textContent = val.toUpperCase();
+    document.getElementById('trackBank').textContent = 'HDFC Bank';
+    document.getElementById('trackType').textContent = 'PRE Intimation';
+    document.getElementById('trackMsgId').textContent = '136088-1868782-1';
+    result.classList.add('visible');
+  }
+
+  document.getElementById('trackInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') trackOrder();
+  });
+
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(function(el) {
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
